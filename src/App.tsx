@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css'
 import Pacote, { type PacoteType } from './Pacote'
 const data: Array<PacoteType> = [
@@ -16,11 +17,17 @@ const data: Array<PacoteType> = [
     peso: 20
   },
 ];
-  export default function App() {
+export default function App() {
+  const [pacotes, setPacotes] = useState(data);
+  function excluiPacote(id: string){
+    setPacotes(pacotes.filter(pacote => pacote.id !== id));
+  }
   return (
-    <dl>
+    <dl className='pacotin'>
       {data.map(pacote =>
-        <Pacote key={pacote.id} pacote={pacote} />
+      <div key={pacote.id}>
+        <Pacote key={pacote.id} pacote={pacote} onExcluir={() => excluiPacote}/>
+      </div>
       )}
     </dl>
   )

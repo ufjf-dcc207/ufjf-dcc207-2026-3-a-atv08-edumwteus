@@ -10,13 +10,16 @@ export type PacoteType = {
 
 export type PacoteProps = {
     pacote: PacoteType;
+    onExcluir: () => void;
 }
 
-export default function Pacote ({pacote}:PacoteProps){
+export default function Pacote ({pacote, onExcluir}:PacoteProps){
     return (
         <div className="pacote">
             <dt>{pacote.id}</dt>
-            <dd></dd>
+            <dd>
+                <button onClick={onExcluir}>🗑️</button>
+            </dd>
             <dt>Largura (cm)</dt>
             <dd>{pacote.largura}</dd>
             <dt>Profundidade (cm)</dt>
